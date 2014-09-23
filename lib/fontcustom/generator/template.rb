@@ -169,9 +169,26 @@ module Fontcustom
 
       def glyphs
         output = @glyphs.map do |name, value|
-          %Q|#{@options[:css_selector].sub('{{glyph}}', name.to_s)}:before { content: "\\#{value[:codepoint].to_s(16)}"; }|
+          %Q|
+#{@options[:css_selector].sub('{{glyph}}', name.to_s)}:before {
+  content: "#{to_unicode(value[:codepoint])}";
+}|
         end
         output.join "\n"
+      end
+
+      def to_unicode(input)
+        "\\#{input.to_s(16)}"
+      end
+
+      def glyph_names
+        @glyphs.keys
+      end
+
+      def glyph_values
+        @glyphs.map do |name, value|
+          to_unicode(value[:codepoint])
+        end
       end
     end
   end
