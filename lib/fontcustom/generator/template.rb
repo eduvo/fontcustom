@@ -169,8 +169,7 @@ module Fontcustom
 
       def glyphs
         output = @glyphs.map do |name, value|
-          %Q|
-#{@options[:css_selector].sub('{{glyph}}', name.to_s)}:before {
+%Q|#{@options[:css_selector].sub('{{glyph}}', name.to_s)}:before {
   content: "#{to_unicode(value[:codepoint])}";
 }|
         end
