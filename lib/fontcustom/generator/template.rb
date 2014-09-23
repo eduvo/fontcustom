@@ -36,7 +36,7 @@ module Fontcustom
         css_path = Pathname.new(@options[:output][:css]).realdirpath
         preview_path = Pathname.new(@options[:output][:preview]).realdirpath
         @font_path = File.join fonts_path.relative_path_from(css_path).to_s, name
-        @font_path_alt = if @options[:preprocessor_path].nil? 
+        @font_path_alt = if @options[:preprocessor_path].nil?
           @font_path
         elsif ! @options[:preprocessor_path] || @options[:preprocessor_path].empty?
           name
@@ -128,10 +128,7 @@ module Fontcustom
 %Q|@font-face {
   font-family: "#{font_name}";
   src: #{url}("#{path}.eot");
-  src: #{url}("#{path}.eot?#iefix") format("embedded-opentype"),
-       #{url}("#{path}.woff") format("woff"),
-       #{url}("#{path}.ttf") format("truetype"),
-       #{url}("#{path}.svg##{font_name}") format("svg");
+  src: #{url}("#{path}.eot?#iefix") format("embedded-opentype"), #{url}("#{path}.woff") format("woff"), #{url}("#{path}.ttf") format("truetype"), #{url}("#{path}.svg##{font_name}") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -152,7 +149,7 @@ module Fontcustom
       end
 
       def glyph_properties
-%Q|  display: inline-block;
+%Q|display: inline-block;
   font-family: "#{font_name}";
   font-style: normal;
   font-weight: normal;
@@ -164,6 +161,10 @@ module Fontcustom
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;|
+      end
+
+      def sassy(input)
+        input.gsub('{', '').gsub('}', '').gsub(';', '')
       end
 
       def glyphs
