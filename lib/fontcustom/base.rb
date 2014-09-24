@@ -7,9 +7,8 @@ module Fontcustom
     def initialize(raw_options)
       check_fontforge
       manifest = ".fontcustom-manifest.json"
-      raw_options[:manifest] = manifest
       @options = Fontcustom::Options.new(raw_options).options
-      @manifest = Fontcustom::Manifest.new(manifest, @options)
+      @manifest = Fontcustom::Manifest.new(@options[:manifest] || manifest, @options)
     end
 
     def compile

@@ -78,7 +78,7 @@ module Fontcustom
     def merge_options
       @cli_options.delete_if { |key, val| val == DEFAULT_OPTIONS[key] }
       @options = DEFAULT_OPTIONS.merge(@config_options).merge(@cli_options)
-      @options.delete :manifest
+      @manifest ||= @options[:manifest]
     end
 
     def clean_font_name
