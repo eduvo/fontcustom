@@ -127,17 +127,9 @@ module Fontcustom
         end
 %Q|@font-face {
   font-family: "#{font_name}";
-  src: #{url}("#{path}.eot");
-  src: #{url}("#{path}.eot?#iefix") format("embedded-opentype"), #{url}("#{path}.woff") format("woff"), #{url}("#{path}.ttf") format("truetype"), #{url}("#{path}.svg##{font_name}") format("svg");
+  src: #{url}("#{path}.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: "#{font_name}";
-    src: #{url}("#{path}.svg##{font_name}") format("svg");
-  }
 }|
       end
 
