@@ -127,7 +127,7 @@ module Fontcustom
         end
 %Q|@font-face {
   font-family: "#{font_name}";
-  src: #{url}("#{path}.woff") format("woff");
+  src: #{url}("#{path}.woff?#iefix") format("woff");
   font-weight: normal;
   font-style: normal;
 }|
